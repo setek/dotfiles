@@ -172,11 +172,13 @@ _testmain.go
 
 # External packages folder
 vendor/
-Contact GitHub 
 
+# Sublime
 
+*.sublime-project
+*.sublime-workspace
 
+# FS TEMPORARY
+# Remove this once we can all use package-lock.json
 
-
-#bads lol
-repos/qantas/global-ui/docs/**
+package-lock.json

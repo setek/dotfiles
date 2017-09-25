@@ -1,19 +1,62 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
-[pager]
-        diff = diff-so-fancy | less --tabs=4 -RFX
-	    show = diff-so-fancy | less --tabs=4 -RFXnpm install -g diff-so-fancy
+#[pager]
+#        diff = diff-so-fancy | less --tabs=4 -RFX
+#	    show = diff-so-fancy | less --tabs=4 -RFXnpm install -g diff-so-fancy
 [hub]
-        protocol = https
+    protocol = https
 [alias]
-        co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
-        count   = !git shortlog -sn
+    promote = !$ZSH/bin/git-promote
+    wtf     = !$ZSH/bin/git-wtf
+    rank-contributors = !$ZSH/bin/git-rank-contributors
+    count   = !git shortlog -sn
+
+    a = add
+    b = branch
+    c = commit
+    cl = clone
+    cho = !"find_and_checkout_branch(){\
+        for last; do true; done ; \
+        pattern='^/.*/$' ;\
+        if [[ $# -eq 1 && $last =~ $pattern ]] ;\
+        then \
+          branch_pattern=`echo $last | sed -e 's/^\\///' -e 's/\\/$//'` ;\
+          branch=`git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ | grep -E -i $branch_pattern | head -n1` ;\
+          if [[ $branch ]] ; then \
+            git checkout $branch ;\
+          else \
+            echo "No branch found matching $last" ; \
+            exit 1 ; \
+          fi \
+        else \
+          git checkout $@ ;\
+        fi \
+      } ; find_and_checkout_branch"
+
+    d = diff
+    dt = difftool
+    fp = "!echo \"git push -u origin $(git branch-name)\" && echo \" \" && git push -u origin $(git branch-name)"
+    fr = "!echo \"git fetch && git rebase\" && echo \" \" && git fetch && git rebase"
+    l = log
+    mt = mergetool
+    p = pull
+    pd = "!pd() { for mybranch in $(git branch-name); do echo \"git checkout develop && git pull && git checkout $mybranch\" && echo \" \" && git checkout develop && git pull && git checkout $mybranch; done; }; pd"
+    # the following wouldn't work?
+    # "for mybranch in $(git branch-name); do git checkout develop & git pull & git checkout $mybranch & done"
+    qa = "!echo \"git push origin $(git branch-name):qa --force\" && echo \" \" && git push origin $(git branch-name):qa --force"
+    r = reset
+    ra = "!echo \"git reset -q && git add . && git status\" && echo \" \" && git reset -q && git add . && git status"
+    rb = rebase
+    s = status
+    st = stash
+    upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD` `git symbolic-ref --short HEAD`
+    
 [color]
 	ui = always
+    #diff = auto
+    #status = auto
+    #branch = auto
 [color "diff"]
 	meta = yellow bold
 	commit = green bold
@@ -36,8 +79,10 @@
 	untracked = cyan
 [core]
         excludesfile = ~/.gitignore
+        #excludesfile = /Users/ming.teo/.gitignore_global
         attributesfile = ~/.gitattributes
         editor = nvim
+        #editor = vim
 [apply]
         whitespace = nowarn
 [mergetool "Kaleidoscope"]
@@ -46,18 +91,25 @@
 [merge]
         tool = Kaleidoscope
         renameLimit = 0
-[difftool "Kaleidoscope"]
-        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool]
-        prompt = false
-[mergetool]
-        prompt = false
-        keepBackup = false
+#[difftool "Kaleidoscope"]
+#        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+#[difftool]
+#        prompt = false
+[merge]
+        tool = sublimerge
+#[mergetool]
+#        prompt = false
+#        keepBackup = false
+[mergetool "sublimerge"]
+        cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
+        trustExitCode = false
 [diff]
-        tool = Kaleidoscope
-	    compactionHeuristic = true
+        tool = sublimerge
+	    #compactionHeuristic = true    
+[difftool "sublimerge"]
+        cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
 [help]
-        autocorrect = 1
+    autocorrect = 1
 [push]
         default = current
         followTags = true
@@ -66,7 +118,12 @@
 [rerere]
 	    enabled = true
 [stash]
-	showPatch = true
+        showPatch = true
 [include]
         path = .dotfiles/git/gitaliases
 
+[user]
+	name = Ming Teo
+	email = ming.teo@foxsports.com.au
+[commit]
+	template = /Users/ming.teo/.stCommitMsg

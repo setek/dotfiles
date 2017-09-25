@@ -57,6 +57,11 @@ Plug 'editorconfig/editorconfig-vim'
 " Tmux
 Plug 'tpope/vim-tbone'
 
+" Text shit
+Plug 'mattn/emmet-vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/vim-easy-align'
+
 " Browsing
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesEnable' }
 autocmd! User indentLine doautocmd indentLine Syntax
@@ -82,7 +87,6 @@ Plug 'tpope/vim-fugitive'
 if v:version >= 703
   Plug 'mhinz/vim-signify'
 endif
-
 " Lang
 if has('nvim')
     Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
@@ -148,8 +152,8 @@ set hidden
 set ignorecase smartcase
 set wildmenu
 set wildmode=full
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab smarttab
 set scrolloff=5
 set encoding=utf-8
