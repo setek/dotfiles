@@ -1,4 +1,4 @@
-# Tyson dotfiles
+# setek dotfiles
 
 ## dotfiles
 
@@ -19,7 +19,7 @@ subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 Run this:
 
 ```sh
-git clone https://github.com/tysonwolker/dotfiles.git ~/.dotfiles
+git clone https://github.com/setek/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
 ```
