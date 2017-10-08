@@ -206,8 +206,8 @@ for pair in $das $mbp2012; do
 done
 unset das mbp2012
 
-# Use F1, F2, etc. keys as standard function keys
-defaults write -g com.apple.keyboard.fnState -bool true
+# Use F1, F2, etc. keys as standard function keys for work, but not for home
+defaults write -g com.apple.keyboard.fnState -bool false
 
 ###############################################################################
 # Screen                                                                      #
