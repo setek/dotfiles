@@ -1,9 +1,6 @@
 # Local/private config goes in the include
 [include]
-        path = ~/.gitconfig.local
-#[pager]
-#        diff = diff-so-fancy | less --tabs=4 -RFX
-#	    show = diff-so-fancy | less --tabs=4 -RFXnpm install -g diff-so-fancy
+    path = ~/.gitconfig.local
 [hub]
     protocol = https
 [alias]
@@ -42,8 +39,8 @@
     mt = mergetool
     p = pull
     pd = "!pd() { for mybranch in $(git branch-name); do echo \"git checkout develop && git pull && git checkout $mybranch\" && echo \" \" && git checkout develop && git pull && git checkout $mybranch; done; }; pd"
-    # the following wouldn't work?
-    # "for mybranch in $(git branch-name); do git checkout develop & git pull & git checkout $mybranch & done"
+#    the following wouldn't work?
+#    "for mybranch in $(git branch-name); do git checkout develop & git pull & git checkout $mybranch & done"
     qa = "!echo \"git push origin $(git branch-name):qa --force\" && echo \" \" && git push origin $(git branch-name):qa --force"
     r = reset
     ra = "!echo \"git reset -q && git add . && git status\" && echo \" \" && git reset -q && git add . && git status"
@@ -51,79 +48,62 @@
     s = status
     st = stash
     upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD` `git symbolic-ref --short HEAD`
-    
+
 [color]
-	ui = always
-    #diff = auto
-    #status = auto
-    #branch = auto
+    ui = always
+#    diff = auto
+#    status = auto
+#    branch = auto
 [color "diff"]
-	meta = yellow bold
-	commit = green bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = yellow bold
+    commit = green bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = "red bold 52"
-	newNormal = "green bold"
-	newHighlight = "green bold 22"
+    oldNormal = red bold
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 [core]
-        excludesfile = ~/.gitignore
-        #excludesfile = /Users/ming.teo/.gitignore_global
-        attributesfile = ~/.gitattributes
-        editor = nvim
-        #editor = vim
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    editor = e
 [apply]
-        whitespace = nowarn
-[mergetool "Kaleidoscope"]
-        cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-        trustexitcode = true
+    whitespace = nowarn
 [merge]
-        tool = Kaleidoscope
-        renameLimit = 0
-#[difftool "Kaleidoscope"]
-#        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-#[difftool]
-#        prompt = false
-[merge]
-        tool = sublimerge
-#[mergetool]
-#        prompt = false
-#        keepBackup = false
+    tool = sublimerge
 [mergetool "sublimerge"]
-        cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
-        trustExitCode = false
+    cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
+    trustExitCode = false
 [diff]
-        tool = sublimerge
-	    #compactionHeuristic = true    
+    tool = sublimerge
 [difftool "sublimerge"]
-        cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
+    cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
 [help]
     autocorrect = 1
 [push]
-        default = current
-        followTags = true
+    default = current
+    followTags = true
 [rebase]
-        autosquash = true
+    autosquash = true
 [rerere]
-	    enabled = true
+    enabled = true
 [stash]
-        showPatch = true
+    showPatch = true
 [include]
-        path = .dotfiles/git/gitaliases
-
+    path = .dotfiles/git/gitaliases
 [user]
-	name = Ming Teo
-	email = ming.teo@foxsports.com.au
+    name = Ming Teo
+    email = ming.teo@foxsports.com.au
 [commit]
-	template = /Users/ming.teo/.stCommitMsg
+    template = /Users/ming.teo/.stCommitMsg
