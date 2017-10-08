@@ -83,10 +83,7 @@ cask 'dropbox'
 cask 'google-backup-and-sync'
 
 # Chat applications
-cask 'signal'
 cask 'skype'
-cask 'slack'
-cask 'viber'
 cask 'whatsapp'
 #cask 'yakyak'
 
