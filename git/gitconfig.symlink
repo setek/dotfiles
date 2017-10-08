@@ -13,7 +13,7 @@
     b = branch
     c = commit
     cl = clone
-    cho = !"find_and_checkout_branch(){\
+    co = !"find_and_checkout_branch(){\
         for last; do true; done ; \
         pattern='^/.*/$' ;\
         if [[ $# -eq 1 && $last =~ $pattern ]] ;\

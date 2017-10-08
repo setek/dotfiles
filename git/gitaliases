@@ -74,8 +74,9 @@
 
   ### checkout ###
 
+  # setek: don’t do this because I want a special checkout, in gitconfig.symlink
   # checkout - update the working tree to match a branch or paths. [same as "o" for "out"]
-  co = checkout
+  # co = checkout
 
   ### cherry-pick ###
 
