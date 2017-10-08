@@ -1,7 +1,7 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
-tap 'fonts'
+tap 'caskroom/fonts'
 
 brew 'ack'
 brew 'coreutils'
@@ -42,7 +42,7 @@ brew 'rbenv'
 brew 'ruby-build'
 
 # Fonts
-cask 'font-hack'
+cask 'caskroom/fonts/font-hack'
 cask 'rocket'
 
 # Core applications
