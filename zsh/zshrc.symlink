@@ -50,13 +50,12 @@ zplug load
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #
-# Ming's aliases
+# My aliases
 #
 
-alias la='ls -lFGha'
-alias ld='ls -lFGhd'
-alias f='grep -IrisHn --color=always'
-alias fd='grep -IisHn --color=always'
+alias la='ls -flFGh --color=always'
+alias ld='echo "ls -flFGhd --color=always test" && echo "" && ls -flFGhd --color=always'
+alias f='echo "grep -IrisHn -C 3 --color=always test ./" && echo "" && grep -IrisHn -C 3 --color=always'
 alias get='echo "curl -o \"#1.jpg\" http://www.url.com/images/[001-100].jpg"; curl -o'
 alias flushdns='dscacheutil -flushcache'
 alias showlib='chflags nohidden ~/Library'
