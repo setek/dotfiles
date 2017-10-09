@@ -33,3 +33,6 @@ brew update
 # Install software
 echo "› $ZSH/script/install"
 $ZSH/script/install
+
+# uninstall global node, so n will work
+brew uninstall --ignore-dependencies node
