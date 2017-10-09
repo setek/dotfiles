@@ -77,3 +77,4 @@ alias grdw='echo "grunt default && grunt watcher" && echo "" && grunt default &&
 alias nrb='echo "npm run build" && echo "" && npm run build'
 alias nrbw='echo "npm run build && npm run watch" && echo "" && npm run build && npm run watch'
 alias nrw='echo "npm run watch" && echo "" && npm run watch'
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn

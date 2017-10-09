@@ -34,8 +34,8 @@ brew 'zplug'
 #brew 'maven'
 
 # Python
-#brew 'python'
-#brew 'python3'
+brew 'python'
+brew 'python3'
 
 # Ruby
 brew 'rbenv'
