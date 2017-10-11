@@ -74,7 +74,7 @@ cask 'the-unarchiver'
 #cask 'zeplin'
 
 # File storage
-cask 'google-drive'
+cask 'google-backup-and-sync'
 
 # Chat applications
 cask 'electronic-wechat'
