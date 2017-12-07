@@ -56,7 +56,10 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias la='ls -flFGh --color=always'
 alias ld='echo "ls -flFGhd --color=always test" && echo "" && ls -flFGhd --color=always'
 alias f='echo "grep -IrisHn -C 3 --color=always test ./" && echo "" && grep -IrisHn -C 3 --color=always'
-alias get='echo "curl -o \"#1.jpg\" http://www.url.com/images/[001-100].jpg"; curl -o'
+
+alias get='echo "curl -o \"#1.jpg\" http://www.url.com/images/[001-100].jpg \n" && curl -o'
+alias ytd='echo "youtube-dl -x --audio-format mp3 https://www.youtube.com/watch\?v=j-aIyueKNcY" && echo "Remember to put a \ before the ? when you paste the Youtube URL (for Mac, Windows doesn’t need) \n" && youtube-dl -x --audio-format mp3'
+
 alias flushdns='dscacheutil -flushcache'
 alias showlib='chflags nohidden ~/Library'
 alias maintain='sudo periodic daily weekly monthly'
