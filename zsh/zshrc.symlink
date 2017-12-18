@@ -58,7 +58,10 @@ alias ld='echo "ls -flFGhd --color=always test" && echo "" && ls -flFGhd --color
 alias f='echo "grep -IrisHn -C 3 --color=always test ./" && echo "" && grep -IrisHn -C 3 --color=always'
 
 alias get='echo "curl -o \"#1.jpg\" http://www.url.com/images/[001-100].jpg \n" && curl -o'
-alias ytd='echo "youtube-dl -x --audio-format mp3 https://www.youtube.com/watch\?v=j-aIyueKNcY" && echo "Remember to put a \ before the ? when you paste the Youtube URL (for Mac, Windows doesn’t need) \n" && youtube-dl -x --audio-format mp3'
+alias ytd='echo "youtube-dl https://www.youtube.com/watch\?v=j-aIyueKNcY" && echo "Remember to put a \ before the ? when you paste the Youtube URL (for Mac,
+Windows doesn’t need) \n" && youtube-dl'
+alias ytda='echo "youtube-dl -x --audio-format mp3 https://www.youtube.com/watch\?v=j-aIyueKNcY" && echo "Remember to put a \ before the ? when you paste the Youtube URL (for Mac,
+Windows doesn’t need) \n" && youtube-dl -x --audio-format mp3'
 
 alias flushdns='dscacheutil -flushcache'
 alias showlib='chflags nohidden ~/Library'
