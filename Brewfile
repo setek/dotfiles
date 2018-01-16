@@ -8,6 +8,7 @@ brew 'coreutils'
 brew 'ctags'
 brew 'doxygen'
 brew 'grc'
+brew 'http-server'
 brew 'imagemagick'
 brew 'jp2a'
 brew 'jq'
@@ -74,6 +75,7 @@ cask 'the-unarchiver'
 #cask 'zeplin'
 
 # File storage
+cask 'dropbox'
 cask 'google-backup-and-sync'
 
 # Chat applications
@@ -101,6 +103,7 @@ cask 'vlc'
 cask 'charles'
 cask 'cyberduck'
 cask 'firefox'
+cask 'insomnia'
 cask 'iterm2'
 cask 'sublime-text'
 cask 'virtualbox'
