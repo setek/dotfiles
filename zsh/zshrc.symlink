@@ -74,12 +74,12 @@ alias runtests='echo "grunt build-tests && testem ci -f test/testem-ci.json -R t
 
 # shortcuts
 
-alias gows='cd ~/repos/hawk-web-server'
-alias gowd='cd ~/repos/hawk-widgets'
 alias grw='echo "grunt watcher" && echo "" && grunt watcher'
 alias grd='echo "grunt default" && echo "" && grunt default'
 alias grdw='echo "grunt default && grunt watcher" && echo "" && grunt default && echo "\n\n\n\n\n\n\n\n\n\n----- RUNNING WATCHER NOW ------\n\n\n\n\n\n\n\n\n\n" && grunt watcher'
 alias nrb='echo "npm run build" && echo "" && npm run build'
 alias nrbw='echo "npm run build && npm run watch" && echo "" && npm run build && echo "\n\n\n\n\n\n\n\n\n\n----- RUNNING WATCH NOW ------\n\n\n\n\n\n\n\n\n\n" && npm run watch'
 alias nrw='echo "npm run watch" && echo "" && npm run watch'
+alias getperms='echo "stat -f \"%OLp\"" && echo "" && stat -f "%OLp"'
+
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn

@@ -177,8 +177,3 @@ vendor/
 
 *.sublime-project
 *.sublime-workspace
-
-# FS TEMPORARY
-# Remove this once we can all use package-lock.json
-
-package-lock.json
