@@ -77,7 +77,7 @@
 [core]
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
-    editor = nvim
+    editor = e
 [apply]
     whitespace = nowarn
 [merge]
