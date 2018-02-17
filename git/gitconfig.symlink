@@ -77,7 +77,7 @@
 [core]
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
-    editor = e
+    editor = nvim
 [apply]
     whitespace = nowarn
 [merge]
@@ -85,10 +85,14 @@
 [mergetool "sublimerge"]
     cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
     trustExitCode = false
+#[diff]
+#    tool = sublimerge
+#[difftool "sublimerge"]
+#    cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
 [diff]
-    tool = sublimerge
-[difftool "sublimerge"]
-    cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
+    tool = vscode-difftool
+[difftool "vscode-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
 [help]
     autocorrect = 1
 [push]
