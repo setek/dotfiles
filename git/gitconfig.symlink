@@ -34,7 +34,7 @@
     d = diff
     dt = difftool
     fp = "!echo \"git push -u origin $(git branch-name)\" && echo \" \" && git push -u origin $(git branch-name)"
-    fr = "!echo \"git fetch && git rebase\" && echo \" \" && git fetch && git rebase"
+    fr = "!echo \"git fetch && git reset --hard origin/$(git branch-name)\" && echo \" \" && git fetch && git reset --hard origin/$(git branch-name)"
     l = log
     mt = mergetool
     p = pull
@@ -109,5 +109,5 @@
 [user]
     name = Ming Teo
     email = ming.teo@foxsports.com.au
-[commit]
-    template = /Users/ming.teo/.stCommitMsg
+#[commit]
+#    template = /Users/ming.teo/.stCommitMsg
