@@ -35,6 +35,7 @@
     dt = difftool
     fp = "!echo \"git push -u origin $(git branch-name)\" && echo \" \" && git push -u origin $(git branch-name)"
     fr = "!echo \"git fetch && git reset --hard origin/$(git branch-name)\" && echo \" \" && git fetch && git reset --hard origin/$(git branch-name)"
+    frb = "!echo \"git fetch && git rebase\" && echo \" \" && git fetch && git rebase"
     l = log
     mt = mergetool
     p = pull
