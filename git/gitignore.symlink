@@ -178,7 +178,11 @@ vendor/
 *.sublime-project
 *.sublime-workspace
 
+# VS Code
+
+.vscode
+
 # Fox Sports
 # Temporary, remove this at some point when we are committing our package-lock.json
 
-package-lock.json
+# package-lock.json
