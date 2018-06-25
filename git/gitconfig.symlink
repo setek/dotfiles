@@ -3,6 +3,8 @@
     path = ~/.gitconfig.local
 [hub]
     protocol = https
+[url "https://"]
+    insteadOf = git://
 [alias]
     promote = !$ZSH/bin/git-promote
     wtf     = !$ZSH/bin/git-wtf

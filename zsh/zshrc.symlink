@@ -53,7 +53,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # My aliases
 #
 
-alias la='ls -flFGh --color=always'
+alias la='ls -laFGh'
 alias ld='echo "ls -flFGhd --color=always test" && echo "" && ls -flFGhd --color=always'
 alias f='echo "grep -IrisHn -C 3 --color=always test ./" && echo "" && grep -IrisHn -C 3 --color=always'
 
