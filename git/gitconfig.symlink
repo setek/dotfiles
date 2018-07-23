@@ -35,15 +35,15 @@
 
     d = diff
     dt = difftool
+    fd = "!fd() { for mybranch in $(git branch-name); do echo \"git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch\" && echo \" \" && git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch; done; }; fd"
+    # the following wouldn't work?
+    # "for mybranch in $(git branch-name); do git checkout develop & git pull & git checkout $mybranch & done"
     fp = "!echo \"git push -u origin $(git branch-name)\" && echo \" \" && git push -u origin $(git branch-name)"
     fr = "!echo \"git fetch && git reset --hard origin/$(git branch-name)\" && echo \" \" && git fetch && git reset --hard origin/$(git branch-name)"
     frb = "!echo \"git fetch && git rebase\" && echo \" \" && git fetch && git rebase"
     l = log
     mt = mergetool
     p = pull
-    pd = "!pd() { for mybranch in $(git branch-name); do echo \"git checkout develop && git pull && git checkout $mybranch\" && echo \" \" && git checkout develop && git pull && git checkout $mybranch; done; }; pd"
-#    the following wouldn't work?
-#    "for mybranch in $(git branch-name); do git checkout develop & git pull & git checkout $mybranch & done"
     qa = "!echo \"git push origin $(git branch-name):qa --force\" && echo \" \" && git push origin $(git branch-name):qa --force"
     r = reset
     ra = "!echo \"git reset -q && git add . && git status\" && echo \" \" && git reset -q && git add . && git status"
