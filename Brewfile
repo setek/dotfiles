@@ -79,7 +79,6 @@ cask 'dropbox'
 cask 'google-backup-and-sync'
 
 # Chat applications
-cask 'electronic-wechat'
 cask 'slack'
 cask 'whatsapp'
 #cask 'skype'
@@ -121,6 +120,7 @@ cask 'visual-studio-code'
 
 # Mas
 mas '1Password', id: 443987910
+mas 'WeChat', id: 836500024
 mas 'Xcode', id: 497799835
 #mas 'Xcode', id: 497799835
 #mas 'Fantastical 2', id: 975937182
