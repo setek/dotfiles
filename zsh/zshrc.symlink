@@ -24,6 +24,11 @@ done
 # load brews etc here
 source "$ZSH/system/_path.zsh"
 
+# To make Homebrew’s completions available in zsh, you must get the Homebrew-managed zsh site-functions on your $FPATH before initialising zsh’s completion facility. Add the following to your ~/.zshrc file:
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 # load everything but the path and completion files
 for file in ${${${config_files:#*/path.zsh}:#*/completion.zsh}:#system/_path.zsh}
 do
@@ -69,8 +74,10 @@ alias maintain='sudo periodic daily weekly monthly'
 
 alias delete-merged-branches="!f() { git checkout --quiet develop && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 alias ss='http-server .'
-alias arti='(ls ~/.npmrc >> /dev/null 2>&1 && mv ~/.npmrc ~/.npmrc-bkp); (ls ~/.docker/config.json >> /dev/null 2>&1 && mv ~/.docker/config.json ~/.docker/config-bkp.json); echo "AD Username: " && read AD_LOGIN && echo "AD Password: " && read -s AD_PASSWORD && printf "cache-min=86400\ncache-max=604800\nprogress=false\n\nregistry=https://artifactory.foxsports.com.au/api/npm/npm-remote/\n" > ~/.npmrc  && curl -u "$AD_LOGIN:$AD_PASSWORD" https://artifactory.foxsports.com.au/api/npm/auth >> ~/.npmrc && curl -u "$AD_LOGIN:$AD_PASSWORD" https://artifactory.foxsports.com.au/api/npm/npm-fsa/auth/fsa >> ~/.npmrc && curl -u "$AD_LOGIN:$AD_PASSWORD" https://artifactory.foxsports.com.au/api/npm/auth | sed -n "1p" | sed -e "s,_auth = ,,g" | read authstr && printf "{\n  \"auths\" : {\n    \"https://artifactory.foxsports.com.au:5003\" : {\n      \"auth\" : \"" > ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"artifactory.foxsports.com.au:5001\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"https://artifactory.foxsports.com.au:5001\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"artifactory.foxsports.com.au:5003\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    }\n  }\n}" >> ~/.docker/config.json && unset -v authstr && unset -v AD_LOGIN AD_PASSWORD authstr'
+alias arti='(ls ~/.npmrc >> /dev/null 2>&1 && mv ~/.npmrc ~/.npmrc-bkp); (ls ~/.docker/config.json >> /dev/null 2>&1 && mv ~/.docker/config.json ~/.docker/config-bkp.json); echo "AD Username: " && read AD_LOGIN && echo "AD Password: " && read -s AD_PASSWORD && printf "cache-min=3600\ncache-max=10800\n\nregistry=https://artifactory.foxsports.com.au/api/npm/npm-all/\n" > ~/.npmrc  && curl -u "$AD_LOGIN:$AD_PASSWORD" https://artifactory.foxsports.com.au/api/npm/auth >> ~/.npmrc && curl -u "$AD_LOGIN:$AD_PASSWORD" https://artifactory.foxsports.com.au/api/npm/npm-fsa/auth/fsa >> ~/.npmrc && curl -u "$AD_LOGIN:$AD_PASSWORD" https://artifactory.foxsports.com.au/api/npm/auth | sed -n "1p" | sed -e "s,_auth = ,,g" | read authstr && printf "{\n  \"auths\" : {\n    \"https://artifactory.foxsports.com.au:5003\" : {\n      \"auth\" : \"" > ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"artifactory.foxsports.com.au:5001\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"https://artifactory.foxsports.com.au:5001\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"artifactory.foxsports.com.au:5003\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    }\n  }\n}" >> ~/.docker/config.json && unset -v authstr && unset -v AD_LOGIN AD_PASSWORD authstr'
 alias runtests='echo "grunt build-tests && testem ci -f test/testem-ci.json -R tap"; grunt build-tests && testem ci -f test/testem-ci.json -R tap'
+alias sydtime='sudo systemsetup -settimezone Australia/Sydney'
+alias pertime='sudo systemsetup -settimezone Australia/Perth'
 alias nw='npm-why'
 
 # shortcuts

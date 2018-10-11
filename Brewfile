@@ -120,6 +120,7 @@ cask 'visual-studio-code'
 
 # Mas
 mas '1Password', id: 443987910
+mas 'BetterSnapTool', id: 417375580
 mas 'WeChat', id: 836500024
 mas 'Xcode', id: 497799835
 #mas 'Xcode', id: 497799835
