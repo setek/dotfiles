@@ -7,6 +7,7 @@ brew 'ack'
 brew 'coreutils'
 brew 'ctags'
 brew 'doxygen'
+brew 'ffmpeg'
 brew 'grc'
 brew 'http-server'
 brew 'imagemagick'
@@ -48,7 +49,7 @@ cask 'caskroom/fonts/font-hack'
 cask 'rocket'
 
 # Core applications
-cask 'flux'
+#cask 'flux'
 cask 'google-chrome'
 cask 'quicksilver'
 cask 'the-unarchiver'
@@ -65,7 +66,6 @@ cask 'the-unarchiver'
 #cask 'nordvpn'
 #cask 'seil'
 #cask 'spectacle'
-#cask 'the-unarchiver'
 #cask 'transmit'
 
 # Design tools
@@ -79,8 +79,10 @@ cask 'dropbox'
 cask 'google-backup-and-sync'
 
 # Chat applications
+cask 'signal'
 cask 'slack'
 cask 'whatsapp'
+cask 'zoomus'
 #cask 'skype'
 #cask 'yakyak'
 
@@ -90,7 +92,9 @@ cask 'whatsapp'
 #cask 'soundcleod'
 
 # Entertainment applications
+cask 'google-play-music-desktop-player'
 cask 'vlc'
+cask 'mplayer-osx-extended'
 #cask 'deluge'
 #cask 'google-plus-auto-backup'
 #cask 'jadengeller-helium'
@@ -101,6 +105,7 @@ cask 'vlc'
 # Developer Applications
 cask 'charles'
 cask 'cyberduck'
+cask 'docker'
 cask 'firefox'
 cask 'insomnia'
 cask 'iterm2'

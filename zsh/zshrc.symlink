@@ -79,6 +79,9 @@ alias runtests='echo "grunt build-tests && testem ci -f test/testem-ci.json -R t
 alias sydtime='sudo systemsetup -settimezone Australia/Sydney'
 alias pertime='sudo systemsetup -settimezone Australia/Perth'
 alias nw='npm-why'
+alias porto='echo "sudo lsof -PiTCP -sTCP:LISTEN\n" && sudo lsof -PiTCP -sTCP:LISTEN'
+alias porti='echo "sudo lsof -i :8080\n" && sudo lsof -i'
+alias portk='echo "kill PID, kill -2/-1/-9 PID\n" && kill'
 
 # shortcuts
 
