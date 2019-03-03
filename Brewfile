@@ -92,7 +92,7 @@ cask 'zoomus'
 #cask 'soundcleod'
 
 # Entertainment applications
-cask 'google-play-music-desktop-player'
+cask 'marshallofsound-google-play-music-player'
 cask 'vlc'
 cask 'mplayer-osx-extended'
 #cask 'deluge'
