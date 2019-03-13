@@ -125,6 +125,7 @@ cask 'visual-studio-code'
 
 # Mas
 mas '1Password', id: 443987910
+mas 'Battery Monitor: Health, Info', id: 836505650
 mas 'BetterSnapTool', id: 417375580
 mas 'WeChat', id: 836500024
 mas 'Xcode', id: 497799835
@@ -136,7 +137,6 @@ mas 'Xcode', id: 497799835
 #mas 'Noizio', id: 928871589
 #mas 'HazeOver • Distraction Dimmer', id: 430798174
 #mas 'SnippetsLab', id: 1006087419
-#mas 'Battery Monitor - Health, Status and Battery Usage Information', id: 836505650
 #mas 'Deliveries: a package tracker', id: 924726344
 #mas 'Be Focused Pro - Focus Timer & Goal Tracker', id: 961632517
 #mas 'Patterns - The Regex App', id: 429449079
