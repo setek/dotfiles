@@ -33,6 +33,11 @@
         fi \
       } ; find_and_checkout_branch"
 
+    coh = "!checkout_history() {\
+            for mybranch in $(git branch-name);\
+            do echo \"checkout history:\n\" && git log -g --grep-reflog \"checkout:\" --format=\"%gs\" | cat -n | sed -E \"s/^\\s+([0-9]+).*from (.*) to .*/\\1 \\2/g\" | tac;\
+            done;\
+        }; checkout_history"
     d = diff
     dt = difftool
     fd = "!fd() { for mybranch in $(git branch-name); do echo \"git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch\" && echo \" \" && git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch; done; }; fd"
