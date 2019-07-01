@@ -40,22 +40,26 @@
         }; checkout_history"
     d = diff
     dt = difftool
-    fd = "!fd() { for mybranch in $(git branch-name); do echo \"git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch\" && echo \" \" && git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch; done; }; fd"
+    f = fetch
+    fd = "!fd() { for mybranch in $(git branch-name); do echo \"git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch\n\" && git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch; done; }; fd"
     # the following wouldn't work?
     # "for mybranch in $(git branch-name); do git checkout develop & git pull & git checkout $mybranch & done"
-    fp = "!echo \"git push -u origin $(git branch-name)\" && echo \" \" && git push -u origin $(git branch-name)"
-    fr = "!echo \"git fetch && git reset --hard origin/$(git branch-name)\" && echo \" \" && git fetch && git reset --hard origin/$(git branch-name)"
-    frb = "!echo \"git fetch && git rebase\" && echo \" \" && git fetch && git rebase"
+    fp = "!echo \"git push -u origin $(git branch-name)\n\" && git push -u origin $(git branch-name)"
+    fr = "!echo \"git fetch && git reset --hard origin/$(git branch-name)\n\" && git fetch && git reset --hard origin/$(git branch-name)"
+    frb = "!echo \"git fetch && git rebase\n\" && git fetch && git rebase"
+    g = grep
     l = log
     mt = mergetool
     p = pull
-    qa = "!echo \"git push origin $(git branch-name):qa --force\" && echo \" \" && git push origin $(git branch-name):qa --force"
+    qa = "!echo \"git push origin $(git branch-name):qa --force\n\" && git push origin $(git branch-name):qa --force"
     r = reset
-    ra = "!echo \"git reset -q && git add . && git status\" && echo \" \" && git reset -q && git add . && git status"
+    ra = "!echo \"git reset -q && git add . && git status\n\" && git reset -q && git add . && git status"
     rb = rebase
+    rmb = "!rmmergedbranches() { git checkout --quiet develop && git branch --merged | grep --invert-match '\\*' | grep --invert-match 'develop' | grep --invert-match 'master' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; rmmergedbranches"
     s = status
     st = stash
     upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD` `git symbolic-ref --short HEAD`
+    w = whatchanged
 
 [color]
     ui = always

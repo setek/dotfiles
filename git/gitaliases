@@ -1,27 +1,6 @@
 [alias]
 
   ##
-  # One letter alias for our most frequent commands.
-  #
-  # Guidelines: these aliases do not use options, because we want
-  # these aliases to be easy to compose and use in many ways.
-  ##
-
-  a = add
-  b = branch
-  c = commit
-  d = diff
-  f = fetch
-  g = grep
-  l = log
-  m = merge
-  o = checkout
-  p = pull
-  r = remote
-  s = status
-  w = whatchanged
-
-  ##
   # Short aliases for our frequent commands.
   #
   # Guidelines:
