@@ -31,9 +31,6 @@
   # branch - edit the description
   be = branch --edit-description
 
-  # branch and only list branches whose tips are reachable from the specified commit (HEAD if not specified).
-  bm = branch --merged
-
   # branch and only list branches whose tips are not reachable from the specified commit (HEAD if not specified).
   bnm = branch --no-merged
 
@@ -53,7 +50,7 @@
 
   ### checkout ###
 
-  # setek: don’t do this because I want a special checkout, in gitconfig.symlink
+  # setek: don’t do this because I want a special checkout
   # checkout - update the working tree to match a branch or paths. [same as "o" for "out"]
   # co = checkout
 
@@ -155,17 +152,6 @@
   #     git config --global branch.autosetuprebase always
   #
   pr = pull --rebase
-
-  ### rebase ###
-
-  # rebase - forward-port local commits to the updated upstream head.
-  rb = rebase
-
-  # rebase - continue the rebasing process after resolving a conflict manually and updating the index with the resolution.
-  rbc = rebase --continue
-
-  # rebase - restart the rebasing process by skipping the current patch.
-  rbs = rebase --skip
 
   # rbi - rebase interactive on our unpushed commits.
   #
@@ -883,3 +869,56 @@
 
   ull = pull
   ush = push.
+
+  # My own aliases
+  a = add
+  b = branch
+  bm = branch --merged
+  c = commit
+  cl = clone
+  co = !"find_and_checkout_branch(){\
+      for last; do true; done ; \
+      pattern='^/.*/$' ;\
+      if [[ $# -eq 1 && $last =~ $pattern ]] ;\
+      then \
+        branch_pattern=`echo $last | sed -e 's/^\\///' -e 's/\\/$//'` ;\
+        branch=`git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ | grep -E -i $branch_pattern | head -n1` ;\
+        if [[ $branch ]] ; then \
+          git checkout $branch ;\
+        else \
+          echo "No branch found matching $last" ; \
+          exit 1 ; \
+        fi \
+      else \
+        git checkout $@ ;\
+      fi \
+    } ; find_and_checkout_branch"
+
+  coh = "!checkout_history() {\
+          for mybranch in $(git branch-name);\
+          do echo \"checkout history:\n\" && git log -g --grep-reflog \"checkout:\" --format=\"%gs\" | cat -n | sed -E \"s/^\\s+([0-9]+).*from (.*) to .*/\\1 \\2/g\" | tac;\
+          done;\
+      }; checkout_history"
+  d = diff
+  dt = difftool
+  f = fetch
+  fd = "!fetch_develop() { for mybranch in $(git branch-name); do echo \"git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch\n\" && git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch; done; }; fetch_develop"
+  fp = "!echo \"git push -u origin $(git branch-name)\n\" && git push -u origin $(git branch-name)"
+  fr = "!echo \"git fetch && git reset --hard origin/$(git branch-name)\n\" && git fetch && git reset --hard origin/$(git branch-name)"
+  frb = "!echo \"git fetch && git rebase\n\" && git fetch && git rebase"
+  g = grep
+  l = log
+  mt = mergetool
+  p = pull
+  qa = "!echo \"git push origin $(git branch-name):qa --force\n\" && git push origin $(git branch-name):qa --force"
+  r = reset
+  ra = "!echo \"git reset -q && git add . && git status\n\" && git reset -q && git add . && git status"
+  rb = rebase
+  rba = rebase --abort
+  rbc = rebase --continue
+  rbs = rebase --skip
+  rmb = "!rmmergedbranches() { git checkout --quiet develop && git branch --merged | grep --invert-match '\\*' | grep --invert-match 'develop' | grep --invert-match 'master' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; rmmergedbranches"
+  s = status
+  st = stash
+  upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD` `git symbolic-ref --short HEAD`
+  w = whatchanged

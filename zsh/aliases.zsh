@@ -3,12 +3,39 @@ alias reload!='. ~/.zshrc'
 alias cls='clear' # Good 'ol Clear Screen command
 
 # Directory navigation
-alias ..2='../../'
-alias ..3='../../../'
-alias ..4='../../../../'
-alias ..5= '../../../../../'
-alias ..6= '../../../../../../'
-alias ..a= 'cd -'
+alias ..='function navigate() {
+    CMD="";
+    if [ ! $1 ]
+    then
+        X=1
+    elif [ "$1" = "w" ]
+    then
+        X=$(($(pwd | grep -o "/" | grep -c "/")-4));
+    else
+        X=$1
+    fi;
+
+    if [ "$1" = "b" ]
+    then
+        CMD="cd -"
+    else
+        for ((I = 0; I < $X; I++));
+        do
+            CMD="$CMD../";
+        done;
+    fi;
+
+    echo "$CMD";
+    eval $CMD;
+}; navigate'
+alias x='function whereami() {
+    DEEP=$(pwd | grep -o "/" | grep -c "/");
+
+    pwd;
+    echo "To root:\t$DEEP dirs";
+    echo "To home:\t$(($DEEP-2)) dirs";
+    echo "To workspace:\t$(($DEEP-4)) dirs";
+}; whereami'
 
 # Network bounce 
 alias networkbounce='sudo networksetup -setv4off Wi-Fi;sudo  networksetup -setdhcp Wi-Fi'
@@ -33,8 +60,6 @@ alias cm='echo "rm -rf node_modules package-lock.json\n" && rm -rf node_modules 
 alias ss='http-server .'
 alias arti='echo "AD Username: " && read AD_LOGIN && echo "AD Password: " && read -s AD_PASSWORD && curl -u "$AD_LOGIN:$AD_PASSWORD" https://artifactory.foxsports.com.au/api/npm/auth | sed -n "1p" | sed -e "s,_auth = ,,g" | read authstr && printf "{\n  \"auths\" : {\n    \"https://artifactory.foxsports.com.au:5003\" : {\n      \"auth\" : \"" >! ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"artifactory.foxsports.com.au:5001\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"https://artifactory.foxsports.com.au:5001\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"artifactory.foxsports.com.au:5003\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    }\n  }\n}" >> ~/.docker/config.json && unset -v authstr && unset -v AD_LOGIN AD_PASSWORD authstr'
 
-alias runtests='echo "grunt build-tests && testem ci -f test/testem-ci.json -R tap"; grunt build-tests && testem ci -f test/testem-ci.json -R tap'
-
 alias sydtime='sudo systemsetup -settimezone Australia/Sydney'
 alias pertime='sudo systemsetup -settimezone Australia/Perth'
 
@@ -48,13 +73,24 @@ alias nrb='echo "npm run build\n" && npm run build'
 alias nrbw='echo "npm run build && npm run watch\n" && npm run build && echo "\n\n\n\n\n\n\n\n\n\n----- RUNNING WATCH NOW ------\n\n\n\n\n\n\n\n\n\n" && npm run watch'
 alias nrw='echo "npm run watch\n" && npm run watch'
 
-alias addmui='echo "npm i --save \"@kayo/mui@git+ssh://git@bitbucket.foxsports.com.au:7999/mar/mui.git#COMMIT_HASH\"\n" && npm i --save "@kayo/mui@git+ssh://git@bitbucket.foxsports.com.au:7999/mar/mui.git#$1"'
+alias addmui='function addmui() { echo "npm i --save \"@kayo/mui@git+ssh://git@bitbucket.foxsports.com.au:7999/mar/mui.git#COMMIT_HASH\"\n" && npm i --save "@kayo/mui@git+ssh://git@bitbucket.foxsports.com.au:7999/mar/mui.git#$1"; }; addmui'
 
-alias viza='echo "npm run viz:golden\n" && npm run viz:golden'
-alias viz='echo "npm run viz:specified TEST_NAME\n" && npm run viz:specified'
+alias viz='function viz() {
+    echo "npm run viz:golden OR npm run viz:specified TEST_NAME\n";
+    if [ ! $1 ]
+    then
+        npm run viz:golden
+    else
+        npm run viz:specified $1
+    fi;
+}; viz'
 
 alias getperms='echo "stat -f \"%OLp\"\n" && stat -f "%OLp"'
 
+alias killsym='~/bin/sep stop'
+
+# unused
+alias runtests='echo "grunt build-tests && testem ci -f test/testem-ci.json -R tap"; grunt build-tests && testem ci -f test/testem-ci.json -R tap'
 alias grw='echo "grunt watcher\n" && grunt watcher'
 alias grd='echo "grunt default\n" && grunt default'
 alias grdw='echo "grunt default && grunt watcher\n" && grunt default && echo "\n\n\n\n\n\n\n\n\n\n----- RUNNING WATCHER NOW ------\n\n\n\n\n\n\n\n\n\n" && grunt watcher'
