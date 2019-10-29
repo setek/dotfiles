@@ -920,5 +920,6 @@
   rmb = "!rmmergedbranches() { git checkout --quiet develop && git branch --merged | grep --invert-match '\\*' | grep --invert-match 'develop' | grep --invert-match 'master' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; rmmergedbranches"
   s = status
   st = stash
+  uc = !"un_committer() { HEADS=\"HEAD~$1\"; echo \"git reset $HEADS\n\"; git reset $HEADS; }; un_committer"
   upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD` `git symbolic-ref --short HEAD`
   w = whatchanged

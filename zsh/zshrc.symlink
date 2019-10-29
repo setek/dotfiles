@@ -58,3 +58,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="$PATH:./node_modules/.bin"
+
+# Kayo Fox stop friggin’ downloading chromium
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
