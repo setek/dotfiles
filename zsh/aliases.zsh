@@ -76,19 +76,26 @@ alias niw='echo "npm ci && npm run watch\n" && npm ci && npm run watch'
 
 alias addmui='echo "deprecated, use addrepo\n" && addrepo'
 alias addrepo='function addrepo() {
-    echo "Commit hash: ";
-    read COMMIT_HASH;
-    COMMIT=${COMMIT_HASH:-poopooeverywhereitneverstops}
-    REPO=${1:-mui};
-    PROJECT=${2:-mar};
-    PACKAGE="@kayo/$REPO@git+ssh://git@bitbucket.foxsports.com.au:7999/$PROJECT/$REPO.git#$COMMIT";
+    echo "Add a bitbucket repo\n\nCommit hash: ";
+    read COMMIT;
 
-    if [ "$COMMIT" = "poopooeverywhereitneverstops" ]
+    if [ ! $COMMIT ]
     then
         echo "Please enter a valid commit hash";
     else
-        echo "npm i --save \"$PACKAGE\"\n";
-        npm i --save \"$PACKAGE\";
+        REPO=${1:-mui};
+        PROJECT=${3:-mar};
+        PACKAGE="@kayo/$REPO@git+ssh://git@bitbucket.foxsports.com.au:7999/$PROJECT/$REPO.git#$COMMIT";
+
+        if [ ! $2 ]
+        then
+            SAVE_TYPE="save";
+        else
+            SAVE_TYPE="save-dev"
+        fi;
+
+        echo "npm i --$SAVE_TYPE \"$PACKAGE\"\n";
+        npm i --$SAVE_TYPE \"$PACKAGE\";
     fi;
 }; addrepo'
 
