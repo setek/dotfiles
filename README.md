@@ -2,7 +2,7 @@
 
 ## dotfiles
 
-Your dotfiles are how you personalize your system. These are mine.
+Your dotfiles are how you personalize your system. These are mine. I stole them from Tyson. Who stole them from Holman.
 
 I was a little tired of having long alias files and everything strewn about
 (which is extremely common on other dotfiles projects, too). That led to this
@@ -11,10 +11,15 @@ up into the main areas I used (Ruby, git, system libraries, and so on), so I
 structured the project accordingly.
 
 If you're interested in the philosophy behind why projects like these are
-awesome, you might want to [read my post on the
+awesome, you might want to [read Zach Holman’s post on the
 subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
 ## install
+
+Open Terminal, pre-install things:
+
+1. Make sure `git` is installed (should be)
+1. Make sure `brew` is installed (`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` or check [Brew website](https://brew.sh/) for the command)
 
 Run this:
 
@@ -23,6 +28,13 @@ git clone https://github.com/setek/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
 ```
+
+Then:
+
+1. Restart computer. Open iTerm2 and ignore Terminal forever.
+1. In Preferences > Profiles > Default (already selected) > General > Command, enter `/bin/zsh`
+
+Now whenever you open iTerm2, it will run `zsh`.
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
 Everything is configured and tweaked within `~/.dotfiles`.
@@ -47,7 +59,7 @@ symlinked without extension into `$HOME` when you run `script/bootstrap`.
 
 A lot of stuff. Seriously, a lot of stuff. Check them out in the file browser
 above and see what components may mesh up with you.
-[Fork it](https://github.com/holman/dotfiles/fork), remove what you don't
+[Fork it](https://github.com/setek/dotfiles/fork), remove what you don't
 use, and build on what you do use.
 
 ## components
