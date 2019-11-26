@@ -1,0 +1,33 @@
+cask_args appdir: '/Applications'
+
+# Core applications
+cask 'dropbox'
+
+# Chat applications
+cask 'signal'
+cask 'whatsapp'
+cask 'zoomus'
+
+# Design applications
+cask 'zeplin'
+
+# Developer applications
+cask 'charles'
+cask 'cyberduck'
+cask 'docker'
+cask 'firefox --language=en-GB'
+cask 'firefox-developer-edition --language=en-GB'
+cask 'insomnia'
+cask 'virtualbox'
+#cask 'sublime-text'
+
+# Entertainment applications
+cask 'marshallofsound-google-play-music-player'
+cask 'mplayer-osx-extended'
+
+# Fonts
+cask 'rocket'
+
+# Mac App Store
+mas '1Password', id: 443987910
+mas 'Xcode', id: 497799835

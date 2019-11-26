@@ -1,0 +1,12 @@
+cask_args appdir: '/Applications'
+
+# Core applications
+cask 'avast-security'
+cask 'dropbox'
+cask 'handbrake'
+cask 'malwarebytes'
+cask 'transmission'
+
+# Chat applications
+cask 'skype'
+cask 'zoomus'

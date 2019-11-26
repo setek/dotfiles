@@ -44,6 +44,25 @@ alias networkbounce='sudo networksetup -setv4off Wi-Fi;sudo  networksetup -setdh
 # My aliases
 #
 
+# Brew aliases
+brewi() {
+    OPTIONS=("work" "home" "yezi" "default");
+    select OPT in "${OPTIONS[@]}"; do
+        if [ "$OPT" = "default" ]
+        then
+            CMD="brew bundle --file=~/.dotfiles/Brewfile";
+            echo "Will install all the default stuffs in ~/.dotfiles/Brewfile"
+        else
+            CMD="brew bundle --file=~/.dotfiles/Brewfile-$OPT";
+            echo "Will install the stuffs in ~/.dotfiles/Brewfile-$OPT"
+        fi
+        break;
+    done;
+
+    echo "$CMD\n";
+    eval $CMD;
+}
+
 alias la='ls -laFGh'
 alias ld='echo "ls -flFGhd --color=always test\n" && ls -flFGhd --color=always'
 alias f='echo "grep -IrisHn -C 3 --color=always test ./\n" && grep -IrisHn -C 3 --color=always'

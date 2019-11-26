@@ -10,6 +10,15 @@ cd "$(dirname $0)"/..
 echo "› brew bundle"
 brew bundle
 
+echo "Choose the type of install:"
+OPTIONS=("work" "home" "yezi");
+select OPT in "${OPTIONS[@]}"; do
+    CMD="brew bundle --file=~/.dotfiles/Brewfile-$OPT";
+    break;
+done;
+
+eval $CMD;
+
 # find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
 
