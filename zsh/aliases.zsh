@@ -109,6 +109,90 @@ alias viz='function viz() {
     fi;
 }; viz'
 
+# trash them goldens
+alias tg='echo "trash test/visual/screenshots/golden/*\n" && trash test/visual/screenshots/golden/*'
+
+# cli giphy selector!
+giphy() {
+    LIMIT=${2:-6};
+    RESULTS=( $(curl --silent --fail -k "https://api.giphy.com/v1/gifs/search?api_key=SZbMIW8u9baDt2joBi5qGI9ef96QGxFK&limit=$LIMIT&offset=0&rating=&lang=en&q=$1" | jq -r '.data[] .images .downsized_large .url') );
+    for ((i = 1; i <= $#RESULTS; i++)); do
+        echo "giphy $i:";
+        imgcat --url $RESULTS[$i];
+        echo "------------------";
+    done;
+    select OPT in "${RESULTS[@]}"; do
+        echo "$OPT" | pbcopy | open -a Slack;
+        break;
+    done;
+}
+
+# for versioning repos
+alias v='function version_foxy_kayo() {
+    if [ -f package.json ]; then
+        echo "This repo: $(basename $(git rev-parse --show-toplevel)) is currently at $(git describe --tags --abbrev=0)";
+    else
+        print "No package.json detected in this directory"
+        return 1;
+    fi;
+
+    if [ $1 ]
+    then
+        OPT="$1";
+    else
+        echo "Please choose how you’d like to version this repo:"
+        OPTIONS=("major" "minor" "patch" "Abort, please");
+        select OPT in "${OPTIONS[@]}"; do
+            if [ "$OPT" = "Abort, please" ]
+            then
+                echo "Aborting...";
+                return 1;
+            fi;
+            break;
+        done
+    fi;
+
+    echo "Updating version with: $OPT"
+    echo "Going to run the following commands:"
+    echo "    git fetch"
+    echo "    git checkout develop && git reset --hard origin/develop"
+    echo "    npm version $OPT"
+    echo "    git checkout master && git reset --hard origin/master"
+    echo "    git merge develop"
+
+    echo "I’ll ask again before pushing anything to remote. Go ahead and do it? (y/n)"
+    while true; do
+        read doit
+        case $doit in
+            [Yy]* )
+                git fetch && git checkout develop && git reset --hard origin/develop && npm version $OPT && git checkout master && git reset --hard origin/master && git merge develop
+                break;;
+            [Nn]* )
+                echo "Aborting...";
+                return 1;;
+            * )
+                echo "Please choose y or n";;
+        esac
+    done
+
+    echo "New version: $(git describe --tags --abbrev=0) tagged. Push develop & master to remote? (y/n)"
+    while true; do
+        read yn
+        case $yn in
+            [Yy]* )
+                git push --tags && git push && git checkout develop && git push
+                break;;
+            [Nn]* )
+                echo "Try to reset changes on local master/develop using:";
+                echo "git co develop && git tag -l | xargs git tag -d && git fetch --tags"; # reset tags on develop
+                echo "git co master && git reset --hard origin/master && git tag -l | xargs git tag -d && git fetch --tags"; # reset master to origin and reset tags
+                return 1;;
+            * )
+                echo "Please choose y or n";;
+        esac
+    done
+}; version_foxy_kayo'
+
 alias et='function e2etest() {
     if [ ! $1 ]
     then
@@ -143,8 +227,10 @@ alias et='function e2etest() {
     eval $CMD;
 }; e2etest'
 
+# get chmod value of a thing
 alias getperms='echo "stat -f \"%OLp\"\n" && stat -f "%OLp"'
 
+# kill symantec endpoint protection
 alias killsym='~/bin/sep stop'
 
 # unused
