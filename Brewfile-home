@@ -10,6 +10,7 @@ cask 'transmission'
 # Chat applications
 cask 'signal'
 cask 'skype'
+cask 'slack'
 cask 'whatsapp'
 # cask 'viber'
 

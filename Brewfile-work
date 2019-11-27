@@ -5,6 +5,7 @@ cask 'dropbox'
 
 # Chat applications
 cask 'signal'
+cask 'slack'
 cask 'whatsapp'
 cask 'zoomus'
 

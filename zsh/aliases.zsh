@@ -68,8 +68,39 @@ alias ld='echo "ls -flFGhd --color=always test\n" && ls -flFGhd --color=always'
 alias f='echo "grep -IrisHn -C 3 --color=always test ./\n" && grep -IrisHn -C 3 --color=always'
 
 alias get='echo "curl -o \"#1.jpg\" http://www.url.com/images/[001-100].jpg \n" && curl -o'
-alias ytd='echo "youtube-dl https://www.youtube.com/watch\?v=VIDEO_ID\nRemember to put a \ before the ? when you paste the Youtube URL\n(for Mac, Windows doesn’t need)\n" && youtube-dl'
-alias ytda='echo "youtube-dl -x --audio-format mp3 https://www.youtube.com/watch\?v=VIDEO_ID\nRemember to put a \ before the ? when you paste the Youtube URL\n(for Mac, Windows doesn’t need)\n" && youtube-dl -x --audio-format mp3'
+
+ytd() {
+    if [[ "$1" == https://www.youtube.com/watch* ]]
+    then
+        echo "Remember to put a \ before the ? when you paste the Youtube URL\n(for Mac, Windows doesn’t need)\n";
+        OPTIONS=("Video in original format" "Audio only as mp3" "Recode video to mp4" "Cancel");
+        CMD="youtube-dl ";
+        select OPT in "${OPTIONS[@]}"; do
+            case "$OPT" in
+                "Video in original format")
+                    break;;
+                "Audio only as mp3")
+                    CMD+="-x --audio-format mp3"
+                    break;;
+                "Recode video to mp4")
+                    CMD+="--recode-video mp4"
+                    break;;
+                "Cancel")
+                    echo "Exiting ...";
+                    return 1;;
+            esac
+            break;
+        done;
+        CMD+=" ${1/\?/\\?}";
+        echo "Running: $CMD\n";
+        eval $CMD;
+    else
+        echo "Please enter a valid YouTube URL.\n\nExiting ...";
+    fi;
+}
+
+alias ytda='echo "This alias is deprecated, you can just use ytd now for everything, yay!\n" && ytd'
+alias ytdr='echo "This alias is deprecated, you can just use ytd now for everything, yay!\n" && ytd'
 
 alias flushdns='dscacheutil -flushcache'
 alias showlib='chflags nohidden ~/Library'

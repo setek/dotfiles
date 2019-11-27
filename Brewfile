@@ -70,9 +70,6 @@ cask 'the-unarchiver'
 # File storage
 cask 'google-backup-and-sync'
 
-# Chat applications
-cask 'slack'
-
 # Entertainment applications
 cask 'vlc'
 
