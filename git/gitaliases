@@ -922,4 +922,5 @@
   st = stash
   uc = !"un_committer() { HEADS=\"HEAD~$1\"; echo \"git reset $HEADS\n\"; git reset $HEADS; }; un_committer"
   upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD` `git symbolic-ref --short HEAD`
+  ver = "!echo \"git describe --tags --abbrev=0\n\" && git describe --tags --abbrev=0"
   w = whatchanged
