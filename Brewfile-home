@@ -25,8 +25,12 @@ cask 'virtualbox'
 #cask 'sublime-text'
 
 # Entertainment applications
+cask 'beardedspice'
 cask 'marshallofsound-google-play-music-player'
 cask 'mplayer-osx-extended'
+
+# Mechanical keyboard key remapping
+cask 'karabiner-elements'
 
 # Mac App Store
 mas '1Password', id: 443987910

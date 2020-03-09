@@ -124,16 +124,26 @@ alias nrbw='echo "npm run build && npm run watch\n" && npm run build && echo "\n
 alias nrw='echo "npm run watch\n" && npm run watch'
 alias niw='echo "npm ci && npm run watch\n" && npm ci && npm run watch'
 
+y() {
+    echo "yarn dev || yarn prod\n";
+    if [ "$1" = "p" ]
+    then
+        yarn prod;
+    else
+        yarn dev;
+    fi;
+}
+
 alias addmui='echo "deprecated, use addrepo\n" && addrepo'
 alias addrepo='function addrepo() {
-    echo "Add a bitbucket repo\n\nCommit hash: ";
+    echo "Add a bitbucket repo (default is ionic)\nUsage: addrepo (mui) (save|save-dev) (mar)\n\nCommit hash: ";
     read COMMIT;
 
     if [ ! $COMMIT ]
     then
         echo "Please enter a valid commit hash";
     else
-        REPO=${1:-mui};
+        REPO=${1:-ionic};
         PROJECT=${3:-mar};
         PACKAGE="@kayo/$REPO@git+ssh://git@bitbucket.foxsports.com.au:7999/$PROJECT/$REPO.git#$COMMIT";
 
@@ -149,18 +159,18 @@ alias addrepo='function addrepo() {
     fi;
 }; addrepo'
 
+# delete them goldens
+alias rg='echo "rm -rf test/visual/screenshots/golden/\n" && rm -rf test/visual/screenshots/golden/'
+
 alias viz='function viz() {
-    echo "npm run viz:golden OR npm run viz:specified TEST_NAME\n";
+    echo "delete goldens && npm run viz:golden OR npm run viz:specified TEST_NAME\n";
     if [ ! $1 ]
     then
-        npm run viz:golden
+        rg && npm run viz:golden
     else
         npm run viz:specified $1
     fi;
 }; viz'
-
-# trash them goldens
-alias tg='echo "trash test/visual/screenshots/golden/*\n" && trash test/visual/screenshots/golden/*'
 
 # cli giphy selector!
 giphy() {
