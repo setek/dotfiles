@@ -900,6 +900,8 @@
           done;\
       }; checkout_history"
   d = diff
+  # Remove `+` and `-` from start of diff lines; just rely upon color.
+  dh = !"echo \"git diff HEAD --color | sed \"s/^\\([^-+ ]*\\)[-+ ]/\\1/\" | less -r\" && git diff --color | sed \"s/^\\([^-+ ]*\\)[-+ ]/\\1/\" | less -r"
   dt = difftool
   f = fetch
   fd = "!fetch_develop() { for mybranch in $(git branch-name); do echo \"git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch\n\" && git checkout develop && git fetch && git reset --hard origin/develop && git checkout $mybranch; done; }; fetch_develop"

@@ -110,6 +110,10 @@ alias cm='echo "rm -rf node_modules package-lock.json\n" && rm -rf node_modules 
 alias ss='http-server .'
 alias arti='echo "AD Username: " && read AD_LOGIN && echo "AD Password: " && read -s AD_PASSWORD && curl -u "$AD_LOGIN:$AD_PASSWORD" https://artifactory.foxsports.com.au/api/npm/auth | sed -n "1p" | sed -e "s,_auth = ,,g" | read authstr && printf "{\n  \"auths\" : {\n    \"https://artifactory.foxsports.com.au:5003\" : {\n      \"auth\" : \"" >! ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"artifactory.foxsports.com.au:5001\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"https://artifactory.foxsports.com.au:5001\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    },\n    \"artifactory.foxsports.com.au:5003\" : {\n      \"auth\" : \"" >> ~/.docker/config.json && printf "$authstr" >> ~/.docker/config.json && printf "\"\n    }\n  }\n}" >> ~/.docker/config.json && unset -v authstr && unset -v AD_LOGIN AD_PASSWORD authstr'
 
+# FUCKING DOCKER
+alias fuckdock='echo "You’ve come to the right place.\n\ndocker login https://artifactory.foxsports.com.au:5001\n" && docker login https://artifactory.foxsports.com.au:5001'
+alias dockfuck='echo "You haven’t come to the right place, but fuck it let’s dock fuck anyway.\n" && fuckdock'
+
 alias sydtime='sudo systemsetup -settimezone Australia/Sydney'
 alias pertime='sudo systemsetup -settimezone Australia/Perth'
 
@@ -123,6 +127,18 @@ alias nrb='echo "npm run build\n" && npm run build'
 alias nrbw='echo "npm run build && npm run watch\n" && npm run build && echo "\n\n\n\n\n\n\n\n\n\n----- RUNNING WATCH NOW ------\n\n\n\n\n\n\n\n\n\n" && npm run watch'
 alias nrw='echo "npm run watch\n" && npm run watch'
 alias niw='echo "npm ci && npm run watch\n" && npm ci && npm run watch'
+
+nr() {
+    CMD="npm run ";
+    echo "npm run some shit\n";
+    OPTIONS=("watch" "build:viz" "build:font-matrix" "lint");
+    select OPT in "${OPTIONS[@]}"; do
+        CMD+="$OPT";
+        break;
+    done;
+    echo "Running: $CMD\n";
+    eval $CMD;
+}
 
 y() {
     echo "yarn dev || yarn prod\n";
