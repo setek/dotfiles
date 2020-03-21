@@ -131,23 +131,49 @@ alias niw='echo "npm ci && npm run watch\n" && npm ci && npm run watch'
 nr() {
     CMD="npm run ";
     echo "npm run some shit\n";
-    OPTIONS=("watch" "build:viz" "build:font-matrix" "lint");
-    select OPT in "${OPTIONS[@]}"; do
-        CMD+="$OPT";
-        break;
-    done;
+    if [ ! $1 ]
+    then
+        OPTIONS=("watch" "build:viz" "build:font-matrix" "lint");
+        select OPT in "${OPTIONS[@]}"; do
+            CMD+="$OPT";
+            break;
+        done;
+    elif [ "$1" = "w" ]
+    then
+        CMD+="watch";
+    elif [ "$1" = "bv" ]
+    then
+        CMD+="build:viz";
+    elif [ "$1" = "bf" ]
+    then
+        CMD+="build:font-matrix";
+    elif [ "$1" = "l" ]
+    then
+        CMD+="lint";
+    else
+        CMD+="$1";
+    fi;
     echo "Running: $CMD\n";
     eval $CMD;
 }
 
 y() {
-    echo "yarn dev || yarn prod\n";
+    CMD="yarn ";
+    echo "yarn some shit\n";
     if [ "$1" = "p" ]
     then
-        yarn prod;
+        CMD+="prod";
+    elif [ "$1" = "t" ]
+    then
+        CMD+="test"
+    elif [ "$1" = "tu" ]
+    then
+        CMD+="test -u"
     else
-        yarn dev;
+        CMD+="dev";
     fi;
+    echo "Running: $CMD\n";
+    eval $CMD;
 }
 
 alias addmui='echo "deprecated, use addrepo\n" && addrepo'
