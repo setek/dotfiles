@@ -123,14 +123,12 @@ alias porto='echo "sudo lsof -PiTCP -sTCP:LISTEN\n" && sudo lsof -PiTCP -sTCP:LI
 alias porti='echo "sudo lsof -i :8080\n" && sudo lsof -i'
 alias portk='echo "kill PID, kill -2/-1/-9 PID\n" && kill'
 
-alias nrb='echo "npm run build\n" && npm run build'
-alias nrbw='echo "npm run build && npm run watch\n" && npm run build && echo "\n\n\n\n\n\n\n\n\n\n----- RUNNING WATCH NOW ------\n\n\n\n\n\n\n\n\n\n" && npm run watch'
-alias nrw='echo "npm run watch\n" && npm run watch'
-alias niw='echo "npm ci && npm run watch\n" && npm ci && npm run watch'
+alias nrw='echo "deprecated, use nr\n" && nr w'
+alias niw='echo "deprecated, use nr\n" && nr ciw'
 
 nr() {
-    CMD="npm run ";
-    echo "npm run some shit\n";
+    CMD="npm ";
+    echo "npm some shit\n";
     if [ ! $1 ]
     then
         OPTIONS=("watch" "build:viz" "build:font-matrix" "lint");
@@ -140,16 +138,19 @@ nr() {
         done;
     elif [ "$1" = "w" ]
     then
-        CMD+="watch";
+        CMD+="run watch";
+    elif [ "$1" = "ciw" ]
+    then
+        CMD+="ci && npm run watch";
     elif [ "$1" = "bv" ]
     then
-        CMD+="build:viz";
+        CMD+="run build:viz";
     elif [ "$1" = "bf" ]
     then
-        CMD+="build:font-matrix";
+        CMD+="run build:font-matrix";
     elif [ "$1" = "l" ]
     then
-        CMD+="lint";
+        CMD+="run lint";
     else
         CMD+="$1";
     fi;
@@ -165,10 +166,13 @@ y() {
         CMD+="prod";
     elif [ "$1" = "t" ]
     then
-        CMD+="test"
+        CMD+="test";
     elif [ "$1" = "tu" ]
     then
-        CMD+="test -u"
+        CMD+="test -u";
+    elif [ "$1" = "l" ]
+    then
+        CMD+="lint";
     else
         CMD+="dev";
     fi;
