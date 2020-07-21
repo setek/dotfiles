@@ -164,6 +164,9 @@ y() {
     if [ "$1" = "p" ]
     then
         CMD+="prod";
+    elif [ "$1" = "a" ]
+    then
+        CMD+="add --registry=https://registry.yarnpkg.com ${@:2}";
     elif [ "$1" = "t" ]
     then
         CMD+="test";
