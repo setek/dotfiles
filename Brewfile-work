@@ -23,7 +23,7 @@ cask 'virtualbox'
 #cask 'sublime-text'
 
 # Entertainment applications
-cask 'beardedspice'
+# cask 'beardedspice'
 cask 'marshallofsound-google-play-music-player'
 cask 'mplayer-osx-extended'
 

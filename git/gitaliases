@@ -913,6 +913,7 @@
   mt = mergetool
   p = pull
   qa = "!echo \"git push origin $(git branch-name):qa --force\n\" && git push origin $(git branch-name):qa --force"
+  qmk = "!reset_qmk_master() { for mybranch in $(git branch-name); do echo \"git checkout master && git fetch upstream && git reset --hard upstream/master && git push && git checkout $mybranch\n\" && git checkout master && git fetch upstream && git reset --hard upstream/master && git push && git checkout $mybranch; done; }; reset_qmk_master"
   r = reset
   ra = "!echo \"git reset -q && git add . && git status\n\" && git reset -q && git add . && git status"
   rb = rebase
