@@ -183,6 +183,35 @@ y() {
     eval $CMD;
 }
 
+purge() {
+    echo "purge a file (default is streamotion account)\nUsage: purge (anything here would change it to foxsports account)\n\nURL: ";
+    read FILE;
+
+    if [ ! $FILE ]
+        then
+            echo 'Please specify which URL to fast purge cache for'
+            echo 'eg. https://binge.com.au/some-file.js'
+            return 1;
+    fi
+
+    if [ $1 ]
+    then
+        ACC="foxsports";
+    else
+        ACC="streamotion";
+    fi
+
+    echo "Purging on account: $ACC \nFile: $FILE \n";
+
+    curl -X POST \
+        https://fsdevfe01.foxsports.com.au/akamai/fast-purge \
+        -H 'Content-Type: application/json' \
+        -H 'access-header: service-developer' \
+        -d "{\"account\":\"$ACC\", \"files\":[\"$FILE\"]}" \
+        --silent \
+        | json_pp
+}
+
 alias addmui='echo "deprecated, use addrepo\n" && addrepo'
 alias addrepo='function addrepo() {
     echo "Add a bitbucket repo (default is ionic)\nUsage: addrepo (mui) (save|save-dev) (mar)\n\nCommit hash: ";
@@ -192,7 +221,7 @@ alias addrepo='function addrepo() {
     then
         echo "Please enter a valid commit hash";
     else
-        REPO=${1:-ionic};
+        REPO=${1:-ionic-ctv};
         PROJECT=${3:-mar};
         PACKAGE="@kayo/$REPO@git+ssh://git@bitbucket.foxsports.com.au:7999/$PROJECT/$REPO.git#$COMMIT";
 
@@ -203,8 +232,9 @@ alias addrepo='function addrepo() {
             SAVE_TYPE="save-dev"
         fi;
 
-        echo "npm i --$SAVE_TYPE \"$PACKAGE\"\n";
-        npm i --$SAVE_TYPE \"$PACKAGE\";
+        CMD="npm i --$SAVE_TYPE \"$PACKAGE\"";
+        echo "$CMD\n";
+        eval $CMD;
     fi;
 }; addrepo'
 
@@ -341,6 +371,9 @@ alias getperms='echo "stat -f \"%OLp\"\n" && stat -f "%OLp"'
 
 # kill symantec endpoint protection
 alias killsym='~/bin/sep stop'
+
+# CLI typing test
+alias tt='gotta-go-fast --fg-empty=38'
 
 # unused
 alias runtests='echo "grunt build-tests && testem ci -f test/testem-ci.json -R tap"; grunt build-tests && testem ci -f test/testem-ci.json -R tap'

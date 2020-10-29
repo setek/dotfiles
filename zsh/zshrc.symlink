@@ -62,6 +62,12 @@ export PATH="$PATH:./node_modules/.bin"
 # Kayo Fox stop friggin’ downloading chromium
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
+# Tizen SHIT
+export PATH="$PATH:$HOME/tizen-studio/tools"
+export PATH="$PATH:$HOME/tizen-studio/tools/ide/bin"
+
 # for QMK
 export PATH="/usr/local/opt/avr-gcc@8/bin:$PATH"
 export PATH="/usr/local/opt/arm-gcc-bin@8/bin:$PATH"
+
+export PATH="$PATH:/usr/local/bin/gotta-go-fast"
